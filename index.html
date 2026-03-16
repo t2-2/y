@@ -1,97 +1,131 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>הוולוג של גיא רביבו</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;700&display=swap" rel="stylesheet">
+<title>Guy Revivo's Vlog</title>
 
 <style>
-:root{
-    --primary:#0f172a;
-    --accent:#1e3a8a;
-    --light:#f1f5f9;
-    --card:#ffffff;
+:root {
+    --glass: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --text: #ffffff;
+    --accent: #38bdf8;
 }
 
-body{
-    margin:0;
-    font-family:'Noto Sans Hebrew', sans-serif;
-    background:var(--light);
-    color:#111;
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    /* רקע מדורג שזז */
+    background: linear-gradient(-45deg, #0f172a, #1e293b, #1e3a8a, #0f172a);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--text);
+    min-height: 100vh;
 }
 
-header{
-    background:linear-gradient(90deg,var(--primary),var(--accent));
-    color:white;
-    padding:40px 20px;
-    text-align:center;
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-header h1{
-    margin:0;
-    font-size:2.2rem;
+header {
+    padding: 60px 20px;
+    text-align: center;
+    animation: fadeInDown 1s ease-out;
 }
 
-header p{
-    margin-top:10px;
-    opacity:0.9;
+header h1 {
+    margin: 0;
+    font-size: 3rem;
+    letter-spacing: -1px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-main{
-    max-width:1000px;
-    margin:auto;
-    padding:30px 20px;
-    display:flex;
-    flex-direction:column;
-    gap:25px;
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px 60px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
-.card{
-    background:var(--card);
-    padding:25px;
-    border-radius:14px;
-    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+/* אפקט הזכוכית - Glassmorphism */
+.card {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* אנימציית כניסה */
+    animation: fadeInUp 0.8s ease-out backwards;
 }
 
-.card h2{
-    margin-top:0;
-    color:var(--primary);
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.25);
 }
 
-.highlight{
-    background:#eef2ff;
-    padding:15px;
-    border-right:5px solid var(--accent);
-    border-radius:10px;
+.card h2 {
+    margin-top: 0;
+    color: var(--accent);
+    font-size: 1.6rem;
 }
 
-img{
-    width:100%;
-    border-radius:12px;
-    margin-top:15px;
+.highlight {
+    background: rgba(56, 189, 248, 0.1);
+    padding: 15px;
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    margin-top: 15px;
 }
 
-footer{
-    text-align:center;
-    padding:20px;
-    background:var(--primary);
-    color:white;
-    margin-top:40px;
+img {
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 20px;
+    opacity: 0.9;
 }
 
-ul{
-    padding-right:20px;
+/* השהיית אנימציה לכל כרטיס כדי שיופיעו אחד אחרי השני */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+.card:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    opacity: 0.7;
+    font-size: 0.9rem;
 }
 
 @media(min-width:900px){
-    main{
-        display:grid;
-        grid-template-columns:1fr 1fr;
+    main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
-    .full{
-        grid-column:1 / -1;
+    .full {
+        grid-column: 1 / -1;
     }
 }
 </style>
@@ -100,71 +134,68 @@ ul{
 <body>
 
 <header>
-    <h1>הבלוג של גיא רביבו</h1>
-    <p>וולוג: סיפור אישי, רגשות ותקווה לעתיד</p>
+    <h1>Guy Revivo's Vlog</h1>
+    <p>A personal journey of feelings, resilience, and hope.</p>
 </header>
 
 <main>
 
 <div class="card full">
-<h2>Warm-Up – מילה אחת</h2>
-<p><strong>שאלה:</strong> איפה היית כשהאירוע התחיל?</p>
-<p><strong>תשובה:</strong> בבית / במרחב מוגן (לדוגמה)</p>
-<p><strong>איך הרגשתי:</strong> מודאג / מבולבל / לחוץ</p>
+    <h2>Warm-Up – One Word</h2>
+    <p><strong>Question:</strong> Where were you when the event started?</p>
+    <p><strong>Answer:</strong> At home / In the safe room</p>
+    <p><strong>How I felt:</strong> Worried / Confused / Stressed</p>
 </div>
 
 <div class="card">
-<h2>מבוא</h2>
-<p>היי, זה הסיפור שלי. בוולוג הזה אני משתף את החוויה שלי ואת מה שלמדתי.</p>
+    <h2>Introduction</h2>
+    <p>Hi, this is my story. In this vlog, I share my personal experience and the insights I gained during this time.</p>
 </div>
 
 <div class="card">
-<h2>מה קרה</h2>
-<p>תיאור קצר וברור של האירוע כפי שחוויתי אותו, ומה התרחש סביבי.</p>
+    <h2>What Happened</h2>
+    <p>A reflection on the events as they unfolded around me, capturing the reality of the situation from my perspective.</p>
 </div>
 
 <div class="card">
-<h2>הרגשות שלי</h2>
-<p>בזמן האירוע הרגשתי רגשות שונים כמו דאגה, בלבול וחשש.  
-למדתי לעצור, לחשוב ולהישאר רגוע ככל האפשר.</p>
+    <h2>My Feelings</h2>
+    <p>Throughout this experience, I navigated emotions like worry and uncertainty. I discovered the importance of staying grounded and calm.</p>
 </div>
 
 <div class="card full">
-<h2>התמונה</h2>
-<p><strong>Sentence starter:</strong> "This picture shows..."</p>
-<img src="saferoom.jpg" alt="התמונה שלי">
-<div class="highlight">
-This picture shows my safe room, a place where I felt safe during a challenging time.
-</div>
-</div>
-
-<div class="card">
-<h2>התקווה שלי לעתיד</h2>
-<p>אני מקווה לעתיד רגוע, בטוח ומלא הבנה בין אנשים.</p>
+    <h2>Visual Perspective</h2>
+    <img src="saferoom.jpg" alt="My Image">
+    <div class="highlight">
+        This picture shows my safe room, a place where I found security and quiet during a challenging time.
+    </div>
 </div>
 
 <div class="card">
-<h2>רפלקציה</h2>
-<p>מה למדתי על עצמי?  
-למדתי על כוח פנימי, על חשיבות משפחה וחברים, ועל תקווה גם בזמנים קשים.</p>
+    <h2>My Hope for the Future</h2>
+    <p>I look forward to a future defined by peace, safety, and mutual understanding between all people.</p>
+</div>
+
+<div class="card">
+    <h2>Reflection</h2>
+    <p>I've learned about my own inner strength and the vital role that family and friends play in staying hopeful.</p>
 </div>
 
 <div class="card full">
-<h2>מבנה הוולוג</h2>
-<ul>
-<li>מבוא</li>
-<li>מה קרה</li>
-<li>הרגשות שלי</li>
-<li>התקווה לעתיד</li>
-<li>תמונה עם הסבר</li>
-</ul>
-<p><strong>זמן הקלטה:</strong> 1–2 דקות (כפי שנדרש במצגת)</p>
+    <h2>Vlog Overview</h2>
+    <ul style="line-height: 1.8;">
+        <li>Introduction</li>
+        <li>Event Description</li>
+        <li>Emotional Journey</li>
+        <li>Future Aspirations</li>
+        <li>Visual Documentation</li>
+    </ul>
+    <p><strong>Estimated Duration:</strong> 1–2 minutes</p>
 </div>
 
 </main>
 
 <footer>
-© 2026 הוולוג של גיא רביבו
+    © 2026 Guy Revivo's Vlog | Crafted with Code
 </footer>
 
 </body>
