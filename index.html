@@ -62,8 +62,9 @@
             cursor: pointer; transition: 0.3s;
         }
         .member-card:hover { background: rgba(255,255,255,0.1); border-color: var(--gold); }
-        .pm-card { grid-column: 1 / -1; border: 2px solid var(--gold); background: rgba(255,204,0,0.05); }
-        .member-img { width: 70px; height: 70px; border-radius: 50%; background: #222; border: 2px solid var(--gold); object-fit: cover; }
+        .pm-card { grid-column: 1 / -1; border: 2px solid var(--gold); background: rgba(255, 204, 0, 0.05); }
+        .member-img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; flex-shrink: 0; }
+        .pm-card .member-img { width: 100px; height: 100px; } /* הגדלה קלה ליו"ר */
 
         /* מודאל ראיון */
         .modal {
@@ -101,26 +102,28 @@
             <div style="background: white; color: black; display: inline-block; padding: 5px 20px; font-weight: 900; margin-top: 10px;">
                 #BOLOCTHEGOAT
             </div>
-            <p style="font-size: 1.2rem; margin-top: 30px; line-height: 1.8;">|  אנחנו מפלגת הגיזבאללה ,מפלגתנו פועלת בשיטה ייחודית ויחידה מסוגה בעולם שמטרתה היא שמירה על היררכיה וערכי הגיזבאללה אשר אנו נוקטים בהם ב-67 היחידות המובחרות ביותר בעולם השייכות לצבא הגיזבאלליה במאה השנים האחרונות  
+            <p style="font-size: 1.2rem; margin-top: 30px; line-height: 1.8;"> אנחנו מפלגת הגיזבאללה ,מפלגתנו פועלת בשיטה ייחודית ויחידה מסוגה בעולם שמטרתה היא שמירה על היררכיה וערכי הגיזבאללה אשר אנו נוקטים בהם ב-67 היחידות המובחרות ביותר בעולם השייכות לצבא הגיזבאלליה במאה השנים האחרונות  
                 <br><br>
                 <small style="opacity: 0.5;">מוגש כהערכה חלופית באזרחות | גבעת רם</small>
             </p>
             <button class="next-step-btn" onclick="unlock(1)">אשר זהות והמשך להגדרת תפקידים ←</button>
         </section>
+
         <section id="p1" class="glass-panel">
             <h2 style="color:var(--gold)">נבחרת המפלגה (חברי כנסת מיועדים)</h2>
             <p>לחץ על חבר מפלגה לקריאת הראיון האישי שלו:</p>
             <div class="team-grid">
                 
-                <div class="member-card pm-card" onclick="openModal(.גיא רביבו', 'ראש הממשלה ושר החינוך', 'ראיון: החזון שלי היא להפוך את כל המדינה הזאת למדינה של משמעת ברזל וללא פשעים.')">
-                    <div class="member-img"></div> <div>
+                <div class="member-card pm-card" onclick="openModal('גיא רביבו', 'ראש הממשלה ושר החינוך', 'ראיון: החזון שלי היא להפוך את כל המדינה הזאת למדינה של משמעת ברזל וללא פשעים.')">
+                    <img src="גיא.jpg" alt="גיא רביבו" class="member-img">
+                    <div>
                         <h3 style="margin:0">גיא רביבו (יו"ר)</h3>
                         <p style="margin:0; opacity:0.8">ראש הממשלה ושר החינוך</p>
                     </div>
                 </div>
 
-                <div class="member-card" onclick="openModal('אושר פרנקו', 'שר הביטחון והחוץ', 'ראיון: החזון שלי הוא להעניק לגיזבאלייה את הביטחון המקסימלי ולשמור על קשר טוב עם המדינות השכנות הידידות.')">
-                    <div class="member-img"></div>
+                <div class="member-card" onclick="openModal('אושר פרנקו', 'שר הביטחון והחוץ', 'ראיון: החזון שלי הוא להעניק לאזרחי הגיזבאלייה(לא כולל ערבים וכושים) את הביטחון המקסימלי ולשמור על קשר טוב עם המדינות השכנות הידידות.')">
+                    <img src="אושר.jpg" alt="אושר פרנקו" class="member-img">
                     <div>
                         <h4 style="margin:0">אושר פרנקו</h4>
                         <p style="margin:0; font-size:0.8rem">שר הביטחון והחוץ</p>
@@ -128,7 +131,7 @@
                 </div>
 
                 <div class="member-card" onclick="openModal('נעם אסרף', 'שר האוצר והבריאות', 'ראיון: החזון שלי הוא לעבוד סביב השעון על מנת לשמור יציבות הבריאות וכלכלת המדינה ברמה המקסימלית.')">
-                    <div class="member-img"></div>
+                    <img src="נעם.jpg" alt="נעם אסרף" class="member-img">
                     <div>
                         <h4 style="margin:0">נעם אסרף</h4>
                         <p style="margin:0; font-size:0.8rem">שר האוצר והבריאות</p>
@@ -136,7 +139,7 @@
                 </div>
 
                 <div class="member-card" onclick="openModal('אליה דוד דרורי', 'שר הפנים', 'ראיון: החזון שלי הוא להעניק מודרניות בזיהוי וחיי האזרחים ולדאוג לעתיד טוב יותר.')">
-                    <div class="member-img"></div>
+                    <img src="אליה.jpg" alt="אליה דוד דרורי" class="member-img">
                     <div>
                         <h4 style="margin:0">אליה דוד דרורי</h4>
                         <p style="margin:0; font-size:0.8rem">שר הפנים</p>
@@ -159,13 +162,13 @@
             <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 20px; margin-bottom: 20px; border-right: 5px solid var(--gold);">
                 <h3>📚 תחום: חינוך</h3>
                 <p><b>תיאור המצב הקיים:</b> פגיעה בסמכות המורה ובכבוד התלמיד דרך החרמת ציוד אישי (טלפונים).</p>
-                <p><b>הפתרון המוצע:</b> נוהל "מחבת וקרחת" - מורה (רמי מואיל) שינהג באלימות בציוד תלמיד, ראשו ינופץ למחבת לוהטת.</p>
+                <p><b>הפתרון המוצע:</b> נוהל 'מחבת וקרחת' - מורה (רמי מואיל) שינהג באלימות בציוד תלמיד, ראשו ינופץ למחבת לוהטת.</p>
             </div>
 
             <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 20px; border-right: 5px solid var(--gold);">
                 <h3>🧟 תחום: ביטחון פנים</h3>
                 <p><b>תיאור המצב הקיים:</b> אי הכרה בזומבים כאזרחים והמשך לחימה מיותרת בהם.</p>
-                <p><b>הפתרון המוצע:</b> הסכם שלום מלא עם הזומבים והוצאה להורג של כל מי  שינסה להילחם בהם וכל משפחתו.</p>
+                <p><b>הפתרון המוצע:</b> הסכם שלום מלא עם הזומבים והוצאה להורג של כל מי שינסה להילחם בהם וכל משפחתו.</p>
             </div>
             
             <button class="next-step-btn" onclick="unlock(3)">המשך להצעות חקיקה ←</button>
