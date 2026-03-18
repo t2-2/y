@@ -1,202 +1,235 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="he" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guy Revivo's Vlog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מפלגת הגיזבאללה</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&family=Rubik:wght@900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #ffcc00;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --bg: #0a0a0a;
+        }
 
-<style>
-:root {
-    --glass: rgba(255, 255, 255, 0.2);
-    --glass-border: rgba(255, 255, 255, 0.3);
-    --text: #ffffff;
-    --accent: #38bdf8;
-}
+        body {
+            margin: 0; font-family: 'Assistant', sans-serif; background: var(--bg); color: white;
+            min-height: 100vh; overflow-x: hidden;
+        }
 
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    /* רקע מדורג שזז */
-    background: linear-gradient(-45deg, #0f172a, #1e293b, #1e3a8a, #0f172a);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    color: var(--text);
-    min-height: 100vh;
-}
+        /* לוגו מרחף ברקע */
+        #bg-logo {
+            position: fixed; width: 350px; opacity: 0.2; z-index: -1;
+            top: 10%; left: 5%; pointer-events: none; transition: 1s ease;
+        }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+        /* ניווט טאבים נעול */
+        nav {
+            position: sticky; top: 0; background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(15px); padding: 15px; display: flex;
+            justify-content: center; gap: 10px; z-index: 100; border-bottom: 1px solid var(--glass-border);
+        }
 
-header {
-    padding: 60px 20px;
-    text-align: center;
-    animation: fadeInDown 1s ease-out;
-}
+        .tab-btn {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            color: #666; padding: 10px 20px; border-radius: 12px;
+            font-weight: 700; cursor: not-allowed; transition: 0.3s;
+        }
 
-header h1 {
-    margin: 0;
-    font-size: 3rem;
-    letter-spacing: -1px;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
+        .tab-btn.available { color: white; cursor: pointer; }
+        .tab-btn.active { background: var(--gold); color: black; border-color: var(--gold); }
 
-main {
-    max-width: 1100px;
-    margin: auto;
-    padding: 0 20px 60px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px 100px; }
 
-/* אפקט הזכוכית - Glassmorphism */
-.card {
-    background: var(--glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* אנימציית כניסה */
-    animation: fadeInUp 0.8s ease-out backwards;
-}
+        /* כרטיסיות זכוכית */
+        .glass-panel {
+            background: var(--glass); backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border); border-radius: 30px;
+            padding: 40px; display: none; animation: fadeInUp 0.5s ease;
+        }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-    background: rgba(255, 255, 255, 0.25);
-}
+        .glass-panel.active { display: block; }
 
-.card h2 {
-    margin-top: 0;
-    color: var(--accent);
-    font-size: 1.6rem;
-}
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-.highlight {
-    background: rgba(56, 189, 248, 0.1);
-    padding: 15px;
-    border-left: 4px solid var(--accent);
-    border-radius: 10px;
-    margin-top: 15px;
-}
+        /* עיצוב הנהגה */
+        .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
+        .member-card {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border);
+            padding: 20px; border-radius: 20px; display: flex; align-items: center; gap: 15px;
+            cursor: pointer; transition: 0.3s;
+        }
+        .member-card:hover { background: rgba(255,255,255,0.1); border-color: var(--gold); }
+        .pm-card { grid-column: 1 / -1; border: 2px solid var(--gold); background: rgba(255,204,0,0.05); }
+        .member-img { width: 70px; height: 70px; border-radius: 50%; background: #222; border: 2px solid var(--gold); object-fit: cover; }
 
-img {
-    width: 100%;
-    border-radius: 15px;
-    margin-top: 20px;
-    opacity: 0.9;
-}
+        /* מודאל ראיון */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 1000;
+        }
+        .modal-box { background: #111; border: 1px solid var(--gold); padding: 40px; border-radius: 25px; max-width: 600px; width: 90%; }
 
-/* השהיית אנימציה לכל כרטיס כדי שיופיעו אחד אחרי השני */
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-.card:nth-child(4) { animation-delay: 0.4s; }
-.card:nth-child(5) { animation-delay: 0.5s; }
-.card:nth-child(6) { animation-delay: 0.6s; }
-.card:nth-child(7) { animation-delay: 0.7s; }
+        .next-step-btn {
+            background: var(--gold); color: black; border: none; padding: 15px 30px;
+            border-radius: 50px; font-weight: 800; width: 100%; margin-top: 25px; cursor: pointer;
+        }
 
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-footer {
-    text-align: center;
-    padding: 40px;
-    opacity: 0.7;
-    font-size: 0.9rem;
-}
-
-@media(min-width:900px){
-    main {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-    .full {
-        grid-column: 1 / -1;
-    }
-}
-</style>
+        /* מובייל */
+        @media (max-width: 768px) { .team-grid { grid-template-columns: 1fr; } .tab-btn { font-size: 0.8rem; padding: 8px 12px; } }
+    </style>
 </head>
-
 <body>
 
-<header>
-    <h1>Guy Revivo's Vlog</h1>
-    <p>A personal journey of feelings, resilience, and hope.</p>
-</header>
+    <img src="הגיזבאללה.jpg" id="bg-logo">
 
-<main>
+    <nav>
+        <button class="tab-btn active available" id="b0" onclick="showTab(0)">חלק א': זהות</button>
+        <button class="tab-btn" id="b1" onclick="showTab(1)">חלק א': הנהגה</button>
+        <button class="tab-btn" id="b2" onclick="showTab(2)">חלק ב': מצע</button>
+        <button class="tab-btn" id="b3" onclick="showTab(3)">חלק ג': חקיקה</button>
+    </nav>
 
-<div class="card full">
-    <h2>Warm-Up – One Word</h2>
-    <p><strong>Question:</strong> Where were you when the event started?</p>
-    <p><strong>Answer:</strong> At home / In the safe room</p>
-    <p><strong>How I felt:</strong> Worried / Confused / Stressed</p>
-</div>
+    <div class="container">
+        
+        <section id="p0" class="glass-panel active">
+            <h1 style="font-family: 'Rubik'; font-size: 4rem; color: var(--gold); margin: 0;">
+                הגיזבאללה
+            </h1>
+            <div style="background: white; color: black; display: inline-block; padding: 5px 20px; font-weight: 900; margin-top: 10px;">
+                #BOLOCTHEGOAT
+            </div>
+            <p style="font-size: 1.2rem; margin-top: 30px; line-height: 1.8;">|  אנחנו מפלגת הגיזבאללה ,מפלגתנו פועלת בשיטה ייחודית ויחידה מסוגה בעולם שמטרתה היא שמירה על היררכיה וערכי הגיזבאללה אשר אנו נוקטים בהם ב-67 היחידות המובחרות ביותר בעולם השייכות לצבא הגיזבאלליה במאה השנים האחרונות  
+                <br><br>
+                <small style="opacity: 0.5;">מוגש כהערכה חלופית באזרחות | גבעת רם</small>
+            </p>
+            <button class="next-step-btn" onclick="unlock(1)">אשר זהות והמשך להגדרת תפקידים ←</button>
+        </section>
+        <section id="p1" class="glass-panel">
+            <h2 style="color:var(--gold)">נבחרת המפלגה (חברי כנסת מיועדים)</h2>
+            <p>לחץ על חבר מפלגה לקריאת הראיון האישי שלו:</p>
+            <div class="team-grid">
+                
+                <div class="member-card pm-card" onclick="openModal(.גיא רביבו', 'ראש הממשלה ושר החינוך', 'ראיון: החזון שלי היא להפוך את כל המדינה הזאת למדינה של משמעת ברזל וללא פשעים.')">
+                    <div class="member-img"></div> <div>
+                        <h3 style="margin:0">גיא רביבו (יו"ר)</h3>
+                        <p style="margin:0; opacity:0.8">ראש הממשלה ושר החינוך</p>
+                    </div>
+                </div>
 
-<div class="card">
-    <h2>Introduction</h2>
-    <p>Hi, this is my story. In this vlog, I share my personal experience and the insights I gained during this time.</p>
-</div>
+                <div class="member-card" onclick="openModal('אושר פרנקו', 'שר הביטחון והחוץ', 'ראיון: החזון שלי הוא להעניק לגיזבאלייה את הביטחון המקסימלי ולשמור על קשר טוב עם המדינות השכנות הידידות.')">
+                    <div class="member-img"></div>
+                    <div>
+                        <h4 style="margin:0">אושר פרנקו</h4>
+                        <p style="margin:0; font-size:0.8rem">שר הביטחון והחוץ</p>
+                    </div>
+                </div>
 
-<div class="card">
-    <h2>What Happened</h2>
-    <p>A reflection on the events as they unfolded around me, capturing the reality of the situation from my perspective.</p>
-</div>
+                <div class="member-card" onclick="openModal('נעם אסרף', 'שר האוצר והבריאות', 'ראיון: החזון שלי הוא לעבוד סביב השעון על מנת לשמור יציבות הבריאות וכלכלת המדינה ברמה המקסימלית.')">
+                    <div class="member-img"></div>
+                    <div>
+                        <h4 style="margin:0">נעם אסרף</h4>
+                        <p style="margin:0; font-size:0.8rem">שר האוצר והבריאות</p>
+                    </div>
+                </div>
 
-<div class="card">
-    <h2>My Feelings</h2>
-    <p>Throughout this experience, I navigated emotions like worry and uncertainty. I discovered the importance of staying grounded and calm.</p>
-</div>
+                <div class="member-card" onclick="openModal('אליה דוד דרורי', 'שר הפנים', 'ראיון: החזון שלי הוא להעניק מודרניות בזיהוי וחיי האזרחים ולדאוג לעתיד טוב יותר.')">
+                    <div class="member-img"></div>
+                    <div>
+                        <h4 style="margin:0">אליה דוד דרורי</h4>
+                        <p style="margin:0; font-size:0.8rem">שר הפנים</p>
+                    </div>
+                </div>
 
-<div class="card full">
-    <h2>Visual Perspective</h2>
-    <img src="saferoom.jpg" alt="My Image">
-    <div class="highlight">
-        This picture shows my safe room, a place where I found security and quiet during a challenging time.
+            </div>
+            <button class="next-step-btn" onclick="unlock(2)">המשך לפירוט מצע המפלגה ←</button>
+        </section>
+
+        <section id="p2" class="glass-panel">
+            <h2 style="color:var(--gold)">מצע המפלגה: זיהוי בעיות ופתרונות</h2>
+            
+            <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 20px; margin-bottom: 20px; border-right: 5px solid var(--gold);">
+                <h3>💰 תחום: יוקר המחיה</h3>
+                <p><b>תיאור המצב הקיים:</b> רשתות השיווק והיבואנים מעלים מחירים באופן חמדני ללא פיקוח אמיתי</p>
+                <p><b>הפתרון המוצע:</b> המטרה של הגיזבאללה היא שמירה על היררכיה ומתן יחס תואם לכל אדם או שחור.</p>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 20px; margin-bottom: 20px; border-right: 5px solid var(--gold);">
+                <h3>📚 תחום: חינוך</h3>
+                <p><b>תיאור המצב הקיים:</b> פגיעה בסמכות המורה ובכבוד התלמיד דרך החרמת ציוד אישי (טלפונים).</p>
+                <p><b>הפתרון המוצע:</b> נוהל "מחבת וקרחת" - מורה (רמי מואיל) שינהג באלימות בציוד תלמיד, ראשו ינופץ למחבת לוהטת.</p>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 20px; border-right: 5px solid var(--gold);">
+                <h3>🧟 תחום: ביטחון פנים</h3>
+                <p><b>תיאור המצב הקיים:</b> אי הכרה בזומבים כאזרחים והמשך לחימה מיותרת בהם.</p>
+                <p><b>הפתרון המוצע:</b> הסכם שלום מלא עם הזומבים והוצאה להורג של כל מי  שינסה להילחם בהם וכל משפחתו.</p>
+            </div>
+            
+            <button class="next-step-btn" onclick="unlock(3)">המשך להצעות חקיקה ←</button>
+        </section>
+
+        <section id="p3" class="glass-panel">
+            <h2 style="color:var(--gold)">חקיקה בכנסת (חוקים חדשים)</h2>
+            
+            <div style="border-bottom: 1px solid #333; padding: 20px 0;">
+                <h4>⚖️ חוק 1: חוק טוהר הגזע</h4>
+                <p>קביעת עונש מוות לכל אדם בעל צבע עור שחור למען שמירה על אסתטיקה לאומית.</p>
+            </div>
+
+            <div style="border-bottom: 1px solid #333; padding: 20px 0;">
+                <h4>⚖️ חוק 2: חוק איסור תעסוקת עיניים קטנות</h4>
+                <p>איסור גורף על אנשים בעלי עיניים קטנות לעבוד ברשת "דלתא" למען ייצוג הולם.</p>
+            </div>
+
+            <div style="padding: 20px 0;">
+                <h4>⚖️ חוק 3: חוק השמירה על הבלורית</h4>
+                <p>קרחת היא עבירה פלילית שעונשה מוות מיידי (למעט מורים שהוענשו במחבת).</p>
+            </div>
+        </section>
+
     </div>
-</div>
 
-<div class="card">
-    <h2>My Hope for the Future</h2>
-    <p>I look forward to a future defined by peace, safety, and mutual understanding between all people.</p>
-</div>
+    <div id="modal" class="modal" onclick="closeModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <h2 id="m-name" style="color:var(--gold); margin:0;"></h2>
+            <p id="m-role" style="opacity:0.6; font-weight:700;"></p>
+            <hr style="border:0; border-top:1px solid #333; margin:20px 0;">
+            <p id="m-text" style="font-size:1.3rem; line-height:1.6;"></p>
+            <button class="next-step-btn" onclick="closeModal()">סגור וסיימתי לקרוא</button>
+        </div>
+    </div>
 
-<div class="card">
-    <h2>Reflection</h2>
-    <p>I've learned about my own inner strength and the vital role that family and friends play in staying hopeful.</p>
-</div>
+    <script>
+        function showTab(index) {
+            if (!document.getElementById('b' + index).classList.contains('available')) return;
+            document.querySelectorAll('.glass-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('p' + index).classList.add('active');
+            document.getElementById('b' + index).classList.add('active');
 
-<div class="card full">
-    <h2>Vlog Overview</h2>
-    <ul style="line-height: 1.8;">
-        <li>Introduction</li>
-        <li>Event Description</li>
-        <li>Emotional Journey</li>
-        <li>Future Aspirations</li>
-        <li>Visual Documentation</li>
-    </ul>
-    <p><strong>Estimated Duration:</strong> 1–2 minutes</p>
-</div>
+            // הזזת לוגו רקע שלא יסתיר
+            const logo = document.getElementById('bg-logo');
+            if(index == 1) { logo.style.left = '70%'; logo.style.top = '5%'; }
+            else if(index == 2) { logo.style.left = '5%'; logo.style.top = '60%'; }
+            else { logo.style.left = '5%'; logo.style.top = '10%'; }
+        }
 
-</main>
+        function unlock(index) {
+            document.getElementById('b' + index).classList.add('available');
+            showTab(index);
+        }
 
-<footer>
-    © 2026 Guy Revivo's Vlog | Crafted with Code
-</footer>
+        function openModal(name, role, text) {
+            document.getElementById('m-name').innerText = name;
+            document.getElementById('m-role').innerText = role;
+            document.getElementById('m-text').innerText = text;
+            document.getElementById('modal').style.display = 'flex';
+        }
 
+        function closeModal() { document.getElementById('modal').style.display = 'none'; }
+    </script>
 </body>
 </html>
