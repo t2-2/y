@@ -19,13 +19,11 @@
             min-height: 100vh; overflow-x: hidden;
         }
 
-        /* לוגו מרחף ברקע */
         #bg-logo {
             position: fixed; width: 350px; opacity: 0.2; z-index: -1;
             top: 10%; left: 5%; pointer-events: none; transition: 1s ease;
         }
 
-        /* ניווט טאבים נעול */
         nav {
             position: sticky; top: 0; background: rgba(0,0,0,0.6);
             backdrop-filter: blur(15px); padding: 15px; display: flex;
@@ -43,7 +41,6 @@
 
         .container { max-width: 1000px; margin: 40px auto; padding: 0 20px 100px; }
 
-        /* כרטיסיות זכוכית */
         .glass-panel {
             background: var(--glass); backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border); border-radius: 30px;
@@ -54,7 +51,6 @@
 
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* עיצוב הנהגה */
         .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
         .member-card {
             background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border);
@@ -64,9 +60,8 @@
         .member-card:hover { background: rgba(255,255,255,0.1); border-color: var(--gold); }
         .pm-card { grid-column: 1 / -1; border: 2px solid var(--gold); background: rgba(255, 204, 0, 0.05); }
         .member-img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; flex-shrink: 0; }
-        .pm-card .member-img { width: 100px; height: 100px; } /* הגדלה קלה ליו"ר */
+        .pm-card .member-img { width: 100px; height: 100px; }
 
-        /* מודאל ראיון */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 1000;
@@ -78,7 +73,6 @@
             border-radius: 50px; font-weight: 800; width: 100%; margin-top: 25px; cursor: pointer;
         }
 
-        /* מובייל */
         @media (max-width: 768px) { .team-grid { grid-template-columns: 1fr; } .tab-btn { font-size: 0.8rem; padding: 8px 12px; } }
     </style>
 </head>
@@ -114,7 +108,7 @@
             <p>לחץ על חבר מפלגה לקריאת הראיון האישי שלו:</p>
             <div class="team-grid">
                 
-                <div class="member-card pm-card" onclick="openModal('גיא רביבו', 'ראש הממשלה ושר החינוך', 'ראיון: החזון שלי היא להפוך את כל המדינה הזאת למדינה של משמעת ברזל וללא פשעים.')">
+                <div class="member-card pm-card" onclick="openModal('גיא רביבו', 'ראש הממשלה ושר החינוך', 'ראיון: החזון שלי הוא להוביל את המדינה למשמעת גבוהה וסדר מופתי בכל התחומים.')">
                     <img src="גיא.jpg" alt="גיא רביבו" class="member-img">
                     <div>
                         <h3 style="margin:0">גיא רביבו (יו"ר)</h3>
@@ -122,7 +116,7 @@
                     </div>
                 </div>
 
-                <div class="member-card" onclick="openModal('אושר פרנקו', 'שר הביטחון והחוץ', 'ראיון: החזון שלי הוא להעניק לאזרחי הגיזבאלייה(לא כולל ערבים וכושים) את הביטחון המקסימלי ולשמור על קשר טוב עם המדינות השכנות הידידות.')">
+                <div class="member-card" onclick="openModal('אושר פרנקו', 'שר הביטחון והחוץ', 'ראיון: החזון שלי הוא להעניק לכלל אזרחי הגיזבאלייה את הביטחון המקסימלי ולשמור על קשרים אסטרטגיים עם השכנות שלנו.')">
                     <img src="אושר.jpg" alt="אושר פרנקו" class="member-img">
                     <div>
                         <h4 style="margin:0">אושר פרנקו</h4>
@@ -130,7 +124,7 @@
                     </div>
                 </div>
 
-                <div class="member-card" onclick="openModal('נעם אסרף', 'שר האוצר והבריאות', 'ראיון: החזון שלי הוא לעבוד סביב השעון על מנת לשמור יציבות הבריאות וכלכלת המדינה ברמה המקסימלית.')">
+                <div class="member-card" onclick="openModal('נעם אסרף', 'שר האוצר והבריאות', 'ראיון: החזון שלי הוא לעבוד סביב השעון על מנת לשמור יציבות הבריאות וכלכלת המדינה ברמה הגבוהה ביותר.')">
                     <img src="נעם.jpg" alt="נעם אסרף" class="member-img">
                     <div>
                         <h4 style="margin:0">נעם אסרף</h4>
@@ -138,7 +132,7 @@
                     </div>
                 </div>
 
-                <div class="member-card" onclick="openModal('אליה דוד דרורי', 'שר הפנים', 'ראיון: החזון שלי הוא להעניק מודרניות בזיהוי וחיי האזרחים ולדאוג לעתיד טוב יותר.')">
+                <div class="member-card" onclick="openModal('אליה דוד דרורי', 'שר הפנים', 'ראיון: החזון שלי הוא להטמיע מודרניות בשירותי הפנים לאזרחים ולדאוג למנהל תקין ועתיד מבטיח.')">
                     <img src="אליה.jpg" alt="אליה דוד דרורי" class="member-img">
                     <div>
                         <h4 style="margin:0">אליה דוד דרורי</h4>
@@ -155,20 +149,20 @@
             
             <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 20px; margin-bottom: 20px; border-right: 5px solid var(--gold);">
                 <h3>💰 תחום: יוקר המחיה</h3>
-                <p><b>תיאור המצב הקיים:</b> רשתות השיווק והיבואנים מעלים מחירים באופן חמדני ללא פיקוח אמיתי</p>
-                <p><b>הפתרון המוצע:</b> המטרה של הגיזבאללה היא שמירה על היררכיה ומתן יחס תואם לכל אדם או שחור.</p>
+                <p><b>תיאור המצב הקיים:</b> רשתות השיווק והיבואנים מעלים מחירים באופן לא מבוקר ללא פיקוח אמיתי.</p>
+                <p><b>הפתרון המוצע:</b> שמירה על היררכיה כלכלית ומתן יחס הוגן ומפוקח לכלל האזרחים במדינה.</p>
             </div>
 
             <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 20px; margin-bottom: 20px; border-right: 5px solid var(--gold);">
                 <h3>📚 תחום: חינוך</h3>
-                <p><b>תיאור המצב הקיים:</b> פגיעה בסמכות המורה ובכבוד התלמיד דרך החרמת ציוד אישי (טלפונים).</p>
-                <p><b>הפתרון המוצע:</b> נוהל 'מחבת וקרחת' - מורה (רמי מואיל) שינהג באלימות בציוד תלמיד, ראשו ינופץ למחבת לוהטת.</p>
+                <p><b>תיאור המצב הקיים:</b> פגיעה בסמכות המורה ובכבוד המקצוע דרך התנהגות לא ראויה בבתי הספר.</p>
+                <p><b>הפתרון המוצע:</b> נוהל 'משמעת וסדר' - מורה שיפעל בניגוד לנהלים או יפגע בתלמיד, יעמוד לדין משמעתי מחמיר בפני ועדת הגיזבאללה.</p>
             </div>
 
             <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 20px; border-right: 5px solid var(--gold);">
                 <h3>🧟 תחום: ביטחון פנים</h3>
-                <p><b>תיאור המצב הקיים:</b> אי הכרה בזומבים כאזרחים והמשך לחימה מיותרת בהם.</p>
-                <p><b>הפתרון המוצע:</b> הסכם שלום מלא עם הזומבים והוצאה להורג של כל מי שינסה להילחם בהם וכל משפחתו.</p>
+                <p><b>תיאור המצב הקיים:</b> חוסר יציבות פנימית והמשך עימותים מיותרים עם אוכלוסיות קצה.</p>
+                <p><b>הפתרון המוצע:</b> החלת סדר ציבורי נוקשה וטיפול משפטי חמור בכל מי שינסה להפר את שלום המדינה.</p>
             </div>
             
             <button class="next-step-btn" onclick="unlock(3)">המשך להצעות חקיקה ←</button>
@@ -178,18 +172,18 @@
             <h2 style="color:var(--gold)">חקיקה בכנסת (חוקים חדשים)</h2>
             
             <div style="border-bottom: 1px solid #333; padding: 20px 0;">
-                <h4>⚖️ חוק 1: חוק טוהר הגזע</h4>
-                <p>קביעת עונש מוות לכל אדם בעל צבע עור שחור למען שמירה על אסתטיקה לאומית.</p>
+                <h4>⚖️ חוק 1: חוק הסדר הציבורי</h4>
+                <p>קביעת נהלים מחמירים לשמירה על האסתטיקה הלאומית והניקיון במרחב הציבורי.</p>
             </div>
 
             <div style="border-bottom: 1px solid #333; padding: 20px 0;">
-                <h4>⚖️ חוק 2: חוק איסור תעסוקת עיניים קטנות</h4>
-                <p>איסור גורף על אנשים בעלי עיניים קטנות לעבוד ברשת "דלתא" למען ייצוג הולם.</p>
+                <h4>⚖️ חוק 2: חוק ייצוג וסטנדרטים</h4>
+                <p>הצבת רף גבוה של נראות וייצוגיות לעובדים במוסדות רשמיים ורשתות ציבוריות.</p>
             </div>
 
             <div style="padding: 20px 0;">
                 <h4>⚖️ חוק 3: חוק השמירה על הבלורית</h4>
-                <p>קרחת היא עבירה פלילית שעונשה מוות מיידי (למעט מורים שהוענשו במחבת).</p>
+                <p>הגדרת תקנון הופעה מסודר לנציגי ציבור. הפרת תקנון ההופעה תגרור השעיה מיידית מהתפקיד.</p>
             </div>
         </section>
 
@@ -213,7 +207,6 @@
             document.getElementById('p' + index).classList.add('active');
             document.getElementById('b' + index).classList.add('active');
 
-            // הזזת לוגו רקע שלא יסתיר
             const logo = document.getElementById('bg-logo');
             if(index == 1) { logo.style.left = '70%'; logo.style.top = '5%'; }
             else if(index == 2) { logo.style.left = '5%'; logo.style.top = '60%'; }
