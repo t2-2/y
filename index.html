@@ -2,139 +2,200 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>עבודה באזרחות - מפלגת הגיזבאללה</title>
+    <title>מפלגת הגיזבאללה - עמוד ראשי</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
             margin: 0;
-            padding: 20px;
+            font-family: 'Assistant', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            text-align: center;
         }
 
-        header {
-            background-color: #ffcc00;
-            padding: 20px;
-            text-align: center;
-            border: 2px solid black;
+        #bg-logo {
+            position: fixed;
+            width: 250px;
+            opacity: 0.1;
+            z-index: -1;
+            top: 20px;
+            left: 20px;
         }
 
         nav {
-            margin: 20px 0;
-            text-align: center;
+            background: #1a1a1a;
+            padding: 15px;
+            border-bottom: 2px solid #ffcc00;
         }
 
         .tab-btn {
-            padding: 10px 20px;
+            background: #333;
+            color: #ccc;
+            border: 1px solid #444;
+            padding: 8px 15px;
+            margin: 0 5px;
             cursor: pointer;
-            border: 1px solid #ccc;
-            background: white;
         }
 
         .tab-btn.active {
-            background-color: #ddd;
+            background: #ffcc00;
+            color: black;
             font-weight: bold;
         }
 
-        .content-box {
-            background-color: white;
-            padding: 20px;
-            border: 1px solid #ccc;
-            max-width: 700px;
-            margin: 0 auto;
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #111;
+            padding: 30px;
+            border: 1px solid #333;
         }
 
-        .page { display: none; }
-        .page.active { display: block; }
+        .glass-panel { display: none; }
+        .glass-panel.active { display: block; }
 
-        .member {
-            border: 1px solid #eee;
-            padding: 10px;
-            margin-bottom: 10px;
-            background: #fafafa;
-        }
-
-        .footer-note {
-            font-size: 12px;
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
             margin-top: 20px;
-            color: #666;
+        }
+
+        .member-card {
+            background: #222;
+            border: 1px solid #444;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .member-card:hover { border-color: #ffcc00; }
+
+        .member-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid #ffcc00;
+        }
+
+        /* מודאל פשוט */
+        #modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-box {
+            background: #222;
+            padding: 25px;
+            border: 2px solid #ffcc00;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .next-btn {
+            background: #ffcc00;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>מפלגת הגיזבאללה</h1>
-        <p>שומרים על הסדר וההיררכיה</p>
-    </header>
+    <img src="הגיזבאללה.jpg" id="bg-logo">
 
     <nav>
-        <button class="tab-btn active" onclick="openPage(0)">מי אנחנו</button>
-        <button class="tab-btn" onclick="openPage(1)">הנהגה</button>
-        <button class="tab-btn" onclick="openPage(2)">המצע שלנו</button>
-        <button class="tab-btn" onclick="openPage(3)">חוקים חדשים</button>
+        <button class="tab-btn active" id="b0" onclick="showTab(0)">זהות</button>
+        <button class="tab-btn" id="b1" onclick="showTab(1)">הנהגה</button>
+        <button class="tab-btn" id="b2" onclick="showTab(2)">מצע</button>
+        <button class="tab-btn" id="b3" onclick="showTab(3)">חקיקה</button>
     </nav>
 
-    <div class="content-box">
+    <div class="container">
         
-        <div id="page0" class="page active">
-            <h2>זהות המפלגה</h2>
-            <p>אנחנו מפלגת הגיזבאללה. המטרה שלנו היא לשמור על ערכי הסדר והמשמעת ב-67 היחידות של הצבא שלנו.</p>
-            <p>אנחנו מאמינים שרק היררכיה ברורה תביא לתוצאות טובות למדינה.</p>
-            <div class="footer-note">מוגש כהערכה חלופית באזרחות | תיכון גבעת רם</div>
-        </div>
+        <section id="p0" class="glass-panel active">
+            <h1 style="color: #ffcc00;">מפלגת הגיזבאללה</h1>
+            <p>אנחנו מפלגת הגיזבאללה, הפועלת לשמירה על סדר וערכים ב-67 היחידות המובחרות ביותר בעולם השייכות לצבא הגיזבאלליה.</p>
+            <p><small>מוגש כהערכה חלופית באזרחות | גבעת רם</small></p>
+            <button class="next-btn" onclick="showTab(1)">המשך להנהגה ←</button>
+        </section>
 
-        <div id="page1" class="page">
-            <h2>חברי המפלגה</h2>
-            <div class="member">
-                <strong>גיא רביבו - יו"ר המפלגה</strong>
-                <p>חזון: להפוך את המדינה למקום עם משמעת ברזל וללא פשע.</p>
+        <section id="p1" class="glass-panel">
+            <h2 style="color: #ffcc00;">חברי המפלגה</h2>
+            <div class="team-grid">
+                <div class="member-card" onclick="openModal('גיא רביבו', 'יושב ראש המפלגה', 'החזון שלי הוא להוביל את המדינה למשמעת ברזל וסדר בכל התחומים.')">
+                    <img src="גיא.jpg" class="member-img">
+                    <h4>גיא רביבו</h4>
+                </div>
+                <div class="member-card" onclick="openModal('נעם אסרף', 'שר האוצר', 'החזון שלי הוא לשמור על יציבות הכלכלה והבריאות ברמה הגבוהה ביותר.')">
+                    <img src="נעם.jpg" class="member-img">
+                    <h4>נעם אסרף</h4>
+                </div>
             </div>
-            <div class="member">
-                <strong>נעם אסרף - שר האוצר</strong>
-                <p>חזון: לשמור על הכלכלה ועל הבריאות של האזרחים בצורה הכי טובה שיש.</p>
+            <button class="next-btn" onclick="showTab(2)">המשך למצע המפלגה ←</button>
+        </section>
+
+        <section id="p2" class="glass-panel">
+            <h2 style="color: #ffcc00;">מצע המפלגה</h2>
+            <div style="text-align: right; padding: 10px;">
+                <p><b>💰 יוקר המחיה:</b> פיקוח על מחירים כדי למנוע חמדנות של יבואנים.</p>
+                <p><b>📚 חינוך:</b> החזרת כבוד המורה ומשמעת נוקשה בבתי הספר.</p>
+                <p><b>🛡️ ביטחון:</b> שמירה על הסדר הציבורי וטיפול חמור במפירי חוק.</p>
             </div>
-        </div>
+            <button class="next-btn" onclick="showTab(3)">המשך לחקיקה ←</button>
+        </section>
 
-        <div id="page2" class="page">
-            <h2>מה אנחנו מציעים (מצע)</h2>
-            <ul>
-                <li><strong>יוקר המחיה:</strong> נפקח על המחירים בחנויות כדי שהיבואנים לא יגזימו.</li>
-                <li><strong>חינוך:</strong> נחזיר את הכבוד למורים ונדאג למשמעת חזקה בכיתות.</li>
-                <li><strong>ביטחון:</strong> נשמור על השקט ונטפל בחומרה במי שעובר על החוק.</li>
-            </ul>
-        </div>
-
-        <div id="page3" class="page">
-            <h2>הצעות לחוקים</h2>
-            <ol>
-                <li>חוק הסדר הציבורי - שמירה על ניקיון ואסתטיקה ברחובות.</li>
-                <li>חוק ייצוג הולם - הגדרת הופעה מסודרת לעובדי ציבור.</li>
-                <li>חוק הבלורית - איסור על קרחות למורים בשביל לשמור על מראה מכובד.</li>
-            </ol>
-        </div>
+        <section id="p3" class="glass-panel">
+            <h2 style="color: #ffcc00;">הצעות חקיקה</h2>
+            <p>1. חוק הסדר הציבורי: שמירה על המרחב הציבורי.</p>
+            <p>2. חוק ייצוג הולם: סטנדרטים של הופעה במוסדות רשמיים.</p>
+            <p>3. חוק הבלורית: איסור קרחות למורים ונציגי ציבור לשמירה על אסתטיקה.</p>
+        </section>
 
     </div>
 
+    <div id="modal" onclick="closeModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <h3 id="m-name" style="color: #ffcc00;"></h3>
+            <p id="m-role" style="font-weight: bold;"></p>
+            <p id="m-text"></p>
+            <button class="next-btn" onclick="closeModal()">סגור</button>
+        </div>
+    </div>
+
     <script>
-        function openPage(index) {
-            // מסתיר את כל הדפים
-            var pages = document.getElementsByClassName('page');
-            for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active');
+        function showTab(idx) {
+            // הסתרת כל הפאנלים
+            var panels = document.getElementsByClassName('glass-panel');
+            for (var i = 0; i < panels.length; i++) {
+                panels[i].classList.remove('active');
             }
-            
-            // מוריד את העיצוב מהכפתורים
+            // ביטול צבע הכפתורים
             var btns = document.getElementsByClassName('tab-btn');
             for (var i = 0; i < btns.length; i++) {
                 btns[i].classList.remove('active');
             }
+            // הצגת הנבחר
+            document.getElementById('p' + idx).classList.add('active');
+            document.getElementById('b' + idx).classList.add('active');
+        }
 
-            // מראה את הדף שנבחר
-            document.getElementById('page' + index).classList.add('active');
-            btns[index].classList.add('active');
+        function openModal(name, role, text) {
+            document.getElementById('m-name').innerText = name;
+            document.getElementById('m-role').innerText = role;
+            document.getElementById('m-text').innerText = text;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
         }
     </script>
-
 </body>
 </html>
